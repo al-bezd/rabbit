@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/player.gd" type="Script" id=2]
-[ext_resource path="res://analog/Analog.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Projectile/Projectile.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Sprites/player.tres" type="SpriteFrames" id=5]
 
@@ -66,16 +65,3 @@ limit_right = 620
 limit_bottom = 120
 limit_smoothed = true
 smoothing_enabled = true
-
-[node name="ViewportContainer" type="ViewportContainer" parent="Camera"]
-margin_right = 127.0
-margin_bottom = 70.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Analog" parent="Camera/ViewportContainer" instance=ExtResource( 3 )]
-position = Vector2( 102.783, 49.3891 )
-scale = Vector2( 0.2, 0.2 )
-AnalogTapToShow = true
-AnalogTapToShowContainer = "ViewportContainer"

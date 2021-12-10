@@ -40,7 +40,7 @@ func _physics_process(delta):
 	
 	# Out of bounds
 	
-	if position.y > 200 or Input.is_action_just_pressed("reset"):
+	if position.y > 200:# or Input.is_action_just_pressed("reset"):
 		position = initialPosition
 	
 	# Apply movement
@@ -63,7 +63,14 @@ func _physics_process(delta):
 		dust.emitting = false
 	
 # Player controls
-
+func player_jump():
+	if is_on_floor():
+		jump(1)
+		doubleJump = true	
+	elif doubleJump:	
+		jump(1)
+		doubleJump = false
+		
 func applyControls():
 
 	movementVelocity = Vector2(0, 0)
@@ -79,16 +86,7 @@ func applyControls():
 		sprite.flip_h = false
 		
 	if Input.is_action_just_pressed("ui_up"):
-		
-		if is_on_floor():
-			
-			jump(1)
-			doubleJump = true
-			
-		elif doubleJump:
-			
-			jump(1)
-			doubleJump = false
+		player_jump()
 	
 	if Input.is_action_just_pressed("ui_accept"):
 		shoot()

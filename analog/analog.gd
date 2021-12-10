@@ -14,7 +14,8 @@ var currentForce = Vector2(0,0)
 var ballPos = Vector2()
 var squaredHalfSizeLength = 0
 var currentPointerIDX = INACTIVE_IDX;
-
+signal tap_up
+signal tap_shoot
 
 func _ready():
 	if AnalogTapToShowContainer == "":
@@ -133,6 +134,8 @@ func set_tap_to_show(value):
 	AnalogTapToShow = value
 		
 func sendSignal2Listener():
+	print('currentForce {currentForce}'.format({'currentForce':currentForce}))
+	print('get_name {get_name}'.format({'get_name':self.get_name()}))
 	get_tree().call_group("JoyStick", "analog_signal_change", currentForce, self.get_name())
 	if mapAnalogToDpad:
 		map_analog_dpad()
@@ -142,3 +145,15 @@ func map_analog_dpad():
 	Input.action_press("ui_right") if currentForce.x > 0.2 else Input.action_release("ui_right")
 	Input.action_press("ui_down") if currentForce.y < -0.2 else Input.action_release("ui_down")
 	Input.action_press("ui_up") if currentForce.y > 0.2 else Input.action_release("ui_up")
+
+
+func _on_TouchScreenButton_pressed():
+	emit_signal('tap_up')
+	
+	#emit_signal("pressed_ui_up")
+	#get_tree().call_group("JoyStick", "analog_signal_change", Vector2(0, 1),'Analog')
+	#Input.action_press("ui_up") if currentForce.y > 0.2 else Input.action_release("ui_up")
+
+
+func _on_ShootButton_pressed():
+	emit_signal('tap_shoot')
