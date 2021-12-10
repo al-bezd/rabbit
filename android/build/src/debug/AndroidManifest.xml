@@ -20,7 +20,7 @@
         android:icon="@mipmap/icon">
 
         <meta-data tools:node="remove" android:name="xr_mode_metadata_name" />
-        <activity android:name="com.godot.game.GodotApp" tools:replace="android:screenOrientation" android:screenOrientation="portrait">
+        <activity android:name="com.godot.game.GodotApp" tools:replace="android:screenOrientation" android:screenOrientation="landscape">
             <meta-data tools:node="remove" android:name="com.oculus.vr.focusaware" />
         </activity>
     </application>
